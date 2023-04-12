@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            padding: 10px;
+        }
+        .grid-container {
+            display: inline-grid;
+            gap: 2em;
+            padding: 0.1em;
+        }
+        .grid-container > div {
+            border: 1px dashed black;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div data-th-each="r: ${results}" class="grid-container">
+        <div style="width: 7em; height: 13em;">
+            <div style="text-align: center;"><img th:src="${r.image}" style="height: 5em; max-width: 90%; object-fit: contain; "/></div>
+            <div>ID: <span th:text="${r.gid}"></span></div>
+            <div>Game: <i th:text="${r.name}"></i></div>
+            <div>Ranking: <i data-th-text="${r.ranking}"></i></div>
+            <div>Year: <i data-th-text="${r.year}"></i></div>
+        </div>
+    </div>
+    <!-- <table border="1">
+        <tr data-th-each="r: ${results}">
+            <td>
+                <div><img th:src="${r.image}" /></div>
+                <div>Id: <span data-th-text="${r.gid}"></span></div>
+                <div>Game: <i data-th-text="${r.name}"></i></div>
+                <div>Ranking: <i data-th-text="${r.ranking}"></i></div>
+                <div>Year: <i data-th-text="${r.year}"></i></div>
+            </td>
+        </tr>
+    </table> -->
+</body>
+</html>
