@@ -20,10 +20,9 @@ public class GameRepository {
         private MongoTemplate mongoTemplate;
 
         public List<Game> search(Integer limit, Integer offset) {
-                Query query = new Query();
                 // Pageable pageableRequest = PageRequest.of(offset, limit);
-                // query.with(pageableRequest); (gives weird bug where it skipped limit*offset instead of entries)
-                query = Query.query(Criteria.where("gid").exists(true)).limit(limit).skip(offset);
+                // query.with(pageableRequest); (PageRequest.of first parameter skips the number of pages instead of number of entries, so it will return offset*limit instead of number of entries)
+                Query query = Query.query(Criteria.where("gid").exists(true)).limit(limit).skip(offset);
 
                 // lambda to find all the mongo game collections
                 return mongoTemplate.find(query, Document.class, "games")
